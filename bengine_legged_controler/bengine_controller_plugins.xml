@@ -1,0 +1,8 @@
+<library path="lib/libbengine_legged_controller">
+    <class name="bengine_legged_controller/BengineJointController" 
+           type="bengine_legged_controller::BengineJointController"           
+           base_class_type="controller_interface::ControllerBase"/>
+        <description>
+            The bengine joint controller.
+        </description>
+</library>

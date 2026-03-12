@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+
+<robot name="bengine_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="DEBUG" default="false"/>
+
+
+    <xacro:include filename="$(find bengine_description1)/xacro/const.xacro"/>
+    <xacro:include filename="$(find bengine_description1)/xacro/materials.xacro"/>
+    <xacro:include filename="$(find bengine_description1)/xacro/leg.xacro"/>
+        <xacro:include filename="$(find bengine_description1)/xacro/transmission.xacro"/>
+    <xacro:include filename="$(find bengine_description1)/xacro/gazebo.xacro"/>
+    <!-- <xacro:include filename="$(find bengine_description1)/xacro/depthCamera.xacro"/> -->
+    <!-- <xacro:include filename="$(find bengine_description1)/xacro/ultraSound.xacro"/> -->
+
+<!-- 调试时使用/方便观察机器人与世界的关系 -->
+    <xacro:if value="$(arg DEBUG)">
+        <link name="world"/>
+        <joint name="base_static_joint" type="fixed">
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <parent link="world"/>
+            <child link="base"/>
+        </joint>
+    </xacro:if> 
+
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="floating_base" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.5"/>
+        <parent link="base"/>
+        <child link="trunk"/>
+    </joint>
+
+    <link name="trunk">
+        <inertial>
+            <origin
+                xyz="1.4246E-10 -8.3627E-09 -0.01377"
+                rpy="0 0 0" />
+            <mass
+                value="5.5" />
+            <inertia
+                ixx="0.012928"
+                ixy="-9.4253E-12"
+                ixz="-8.5678E-12"
+                iyy="0.037494"
+                iyz="4.9943E-10"
+                izz="0.045271" />
+        </inertial>
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                filename="package://bengine_description1/meshes/base_link.STL" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                filename="package://bengine_description1/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="trunk"/>
+        <child link="imu_link"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="imu_link">
+        <inertial>
+            <mass value="0.001"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size=".001 .001 .001"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- <xacro:depthCamera camID="1" name="face">
+        <origin rpy="${PI} 0 0" xyz="0.2785 0.0125 0.0167"/>
+    </xacro:depthCamera> -->
+
+    <!-- <xacro:depthCamera camID="2" name="chin">
+        <origin rpy="${PI} ${PI/2} 0" xyz="0.2522 0.0125 -0.0436"/>
+    </xacro:depthCamera> -->
+
+    <!-- <xacro:depthCamera camID="3" name="left">
+        <origin rpy="${PI} 0.2618 ${PI/2}" xyz="-0.066 0.082 -0.0176"/>
+    </xacro:depthCamera> -->
+
+    <!-- <xacro:depthCamera camID="4" name="right">
+        <origin rpy="${PI} 0.2618 ${-PI/2}" xyz="-0.041 -0.082 -0.0176"/>
+    </xacro:depthCamera> -->
+
+    <!-- <xacro:depthCamera camID="5" name="rearDown">
+        <origin rpy="${PI} ${PI/2} 0" xyz="-0.0825 0.0125 -0.04365"/>
+    </xacro:depthCamera> -->
+
+    <!-- <joint name="camera_laserscan_joint_left" type="fixed">
+        <origin rpy="0 0.2618 0" xyz="0 0 0"/>
+        <parent link="camera_left"/>
+        <child link="camera_laserscan_link_left"/>
+    </joint> -->
+
+    <!-- <link name="camera_laserscan_link_left">
+    </link> -->
+
+    <!-- <joint name="camera_laserscan_joint_right" type="fixed">
+        <origin rpy="0 0.2618 0" xyz="0 0 0"/>
+        <parent link="camera_right"/>
+        <child link="camera_laserscan_link_right"/>
+    </joint> -->
+
+    <!-- <link name="camera_laserscan_link_right">
+    </link> -->
+
+    <!-- <xacro:ultraSound name="left">
+        <origin rpy="0 0.2618 ${PI/2}" xyz="-0.0535  0.0826 0.00868"/>
+    </xacro:ultraSound> -->
+
+    <!-- <xacro:ultraSound name="right">
+        <origin rpy="0 0.2618 ${-PI/2}" xyz="-0.0535 -0.0826 0.00868"/>
+    </xacro:ultraSound> -->
+
+    <!-- <xacro:ultraSound name="face">
+        <origin rpy="0 0 0" xyz="0.2747 0.0 -0.0088"/>
+    </xacro:ultraSound> -->
+
+</robot>

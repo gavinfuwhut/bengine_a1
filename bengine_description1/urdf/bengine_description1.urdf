@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="bengine_description1">
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="1.4246E-10 -8.3627E-09 -0.01377"
+        rpy="0 0 0" />
+      <mass
+        value="5.5" />
+      <inertia
+        ixx="0.012928"
+        ixy="-9.4253E-12"
+        ixz="-8.5678E-12"
+        iyy="0.037494"
+        iyz="4.9943E-10"
+        izz="0.045271" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="LF_roll_Link">
+    <inertial>
+      <origin
+        xyz="0.040364 1.2659E-05 -0.0011006"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.0013068"
+        ixy="-3.4307E-07"
+        ixz="2.9915E-05"
+        iyy="0.0019766"
+        iyz="4.5267E-06"
+        izz="0.001591" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="LF_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0.22 0.077 0.0015"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LF_roll_Link" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+
+  <link name="LF_pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.049682 0.11584 -0.0084673"
+        rpy="0 0 0" />
+      <mass
+        value="6" />
+      <inertia
+        ixx="0.0067785"
+        ixy="-0.00086216"
+        ixz="-0.0056662"
+        iyy="0.031525"
+        iyz="-0.00014782"
+        izz="0.028015" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="LF_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.1321 -0.029947 -0.0047174"
+      rpy="0.011738 0 0" />
+    <parent
+      link="LF_roll_Link" />
+    <child
+      link="LF_pitch_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+
+  <link name="LF_knee_Link">
+    <inertial>
+      <origin
+        xyz="0.15397 4.6056E-05 -0.0051606"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.00033809"
+        ixy="1.8662E-06"
+        ixz="0.00045925"
+        iyy="0.0073266"
+        iyz="-8.2684E-08"
+        izz="0.0071806" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_knee_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_knee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="LF_knee_joint"
+    type="revolute">
+    <origin
+      xyz="-0.28465 0.15 -0.094729"
+      rpy="0 0 0" />
+    <parent
+      link="LF_pitch_Link" />
+    <child
+      link="LF_knee_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="LF_sensor_Link">
+    <inertial>
+      <origin
+        xyz="0.017161 -0.02479 -0.01807"
+        rpy="0 0 0" />
+      <mass
+        value="0.018948" />
+      <inertia
+        ixx="1.2239E-05"
+        ixy="6.7853E-08"
+        ixz="-5.7805E-06"
+        iyy="1.6991E-05"
+        iyz="5.0987E-08"
+        izz="1.2648E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_sensor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LF_sensor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_sensor_joint"
+    type="fixed">
+    <origin
+      xyz="0.29975 0.025 -0.018896"
+      rpy="-0.011738 0 0" />
+    <parent
+      link="LF_knee_Link" />
+    <child
+      link="LF_sensor_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="RF_roll_Link">
+    <inertial>
+      <origin
+        xyz="0.040364 1.6542E-05 -0.0011006"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.0013068"
+        ixy="-4.4861E-07"
+        ixz="2.9913E-05"
+        iyy="0.0019766"
+        iyz="5.8871E-06"
+        izz="0.0015911" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0.22 -0.077 0.0015"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RF_roll_Link" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="RF_pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.049991 -0.11589 -0.0089042"
+        rpy="0 0 0" />
+      <mass
+        value="6" />
+      <inertia
+        ixx="0.0068866"
+        ixy="0.00086703"
+        ixz="-0.0058854"
+        iyy="0.031789"
+        iyz="0.00015207"
+        izz="0.028186" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.1321 0.030063 -0.0039071"
+      rpy="0.015266 0 0" />
+    <parent
+      link="RF_roll_Link" />
+    <child
+      link="RF_pitch_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="RF_knee_Link">
+    <inertial>
+      <origin
+        xyz="0.15415 -4.02E-05 -0.0050232"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.00033753"
+        ixy="-1.9982E-06"
+        ixz="0.00045382"
+        iyy="0.0073391"
+        iyz="1.1633E-07"
+        izz="0.0071938" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_knee_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_knee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_knee_joint"
+    type="revolute">
+    <origin
+      xyz="-0.28413 -0.15 -0.096285"
+      rpy="0 0 0" />
+    <parent
+      link="RF_pitch_Link" />
+    <child
+      link="RF_knee_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="RF_sensor_Link">
+    <inertial>
+      <origin
+        xyz="0.015066 -0.02468 -0.021168"
+        rpy="0 0 0" />
+      <mass
+        value="0.024069" />
+      <inertia
+        ixx="1.3408E-05"
+        ixy="1.0812E-07"
+        ixz="-7.0819E-06"
+        iyy="2.1459E-05"
+        iyz="5.1584E-08"
+        izz="1.8081E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_sensor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RF_sensor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_sensor_joint"
+    type="fixed">
+    <origin
+      xyz="0.29982 0.025 -0.018563"
+      rpy="-0.015266 0 0" />
+    <parent
+      link="RF_knee_Link" />
+    <child
+      link="RF_sensor_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="LB_roll_Link">
+    <inertial>
+      <origin
+        xyz="-0.040364 1.4698E-05 -0.0011006"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.0013068"
+        ixy="4.0051E-07"
+        ixz="-2.9914E-05"
+        iyy="0.0019766"
+        iyz="5.0596E-06"
+        izz="0.001591" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_roll_joint"
+    type="continuous">
+    <origin
+      xyz="-0.22 0.077 0.0015"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LB_roll_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="LB_pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.04954 0.11584 -0.009262"
+        rpy="0 0 0" />
+      <mass
+        value="6" />
+      <inertia
+        ixx="0.0069647"
+        ixy="-0.00085987"
+        ixz="-0.0060027"
+        iyy="0.031525"
+        iyz="-0.00016075"
+        izz="0.027829" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="LB_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.1321 -0.02994 -0.0047587"
+      rpy="0.013118 0 0" />
+    <parent
+      link="LB_roll_Link" />
+    <child
+      link="LB_pitch_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+
+  <link
+    name="LB_knee_Link">
+    <inertial>
+      <origin
+        xyz="0.15399 4.6051E-05 -0.0043814"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.00033362"
+        ixy="1.8666E-06"
+        ixz="0.0004246"
+        iyy="0.0073266"
+        iyz="-7.3166E-08"
+        izz="0.007185" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_knee_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_knee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_knee_joint"
+    type="revolute">
+    <origin
+      xyz="-0.28312 0.15 -0.099224"
+      rpy="0 0 0" />
+    <parent
+      link="LB_pitch_Link" />
+    <child
+      link="LB_knee_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  <link
+    name="LB_sensor_Link">
+    <inertial>
+      <origin
+        xyz="0.016468 -0.024751 -0.019126"
+        rpy="0 0 0" />
+      <mass
+        value="0.024664" />
+      <inertia
+        ixx="1.5459E-05"
+        ixy="1.0016E-07"
+        ixz="-7.6348E-06"
+        iyy="2.2668E-05"
+        iyz="6.797E-08"
+        izz="1.7488E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_sensor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/LB_sensor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_sensor_joint"
+    type="fixed">
+    <origin
+      xyz="0.29984 0.025 -0.017379"
+      rpy="-0.013118 0 0" />
+    <parent
+      link="LB_knee_Link" />
+    <child
+      link="LB_sensor_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="RB_roll_Link">
+    <inertial>
+      <origin
+        xyz="-0.040364 1.1792E-05 -0.0011006"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.0013068"
+        ixy="3.2151E-07"
+        ixz="-2.9915E-05"
+        iyy="0.0019767"
+        iyz="4.0414E-06"
+        izz="0.001591" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RB_roll_joint"
+    type="revolute">
+    <origin
+      xyz="-0.22 -0.077 0.0015"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RB_roll_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+  
+  <link
+    name="RB_pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.049958 -0.11589 -0.0090966"
+        rpy="0 0 0" />
+      <mass
+        value="6" />
+      <inertia
+        ixx="0.0069305"
+        ixy="0.0008664"
+        ixz="-0.0059669"
+        iyy="0.031789"
+        iyz="0.00015494"
+        izz="0.028142" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="RB_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.1321 0.030044 -0.004051"
+      rpy="0.010477 0 0" />
+    <parent
+      link="RB_roll_Link" />
+    <child
+      link="RB_pitch_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+
+  <link name="RB_knee_Link">
+    <inertial>
+      <origin
+        xyz="0.15423 -4.0188E-05 -0.00176"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.0003214"
+        ixy="-1.9999E-06"
+        ixz="0.00030836"
+        iyy="0.0073391"
+        iyz="7.392E-08"
+        izz="0.0072099" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_knee_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_knee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RB_knee_joint"
+    type="revolute">
+    <origin
+      xyz="-0.28377 -0.15 -0.097351"
+      rpy="0 0 0" />
+    <parent
+      link="RB_pitch_Link" />
+    <child
+      link="RB_knee_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="15" />
+  </joint>
+
+  <link name="RB_sensor_Link">
+    <inertial>
+      <origin
+        xyz="0.016572 -0.024797 -0.019507"
+        rpy="0 0 0" />
+      <mass
+        value="0.023885" />
+      <inertia
+        ixx="1.4642E-05"
+        ixy="7.6959E-08"
+        ixz="-7.3451E-06"
+        iyy="2.1547E-05"
+        iyz="4.913E-08"
+        izz="1.6859E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_sensor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bengine_description1/meshes/RB_sensor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RB_sensor_joint"
+    type="fixed">
+    <origin
+      xyz="0.30014 0.025 -0.012214"
+      rpy="-0.010477 0 0" />
+    <parent
+      link="RB_knee_Link" />
+    <child
+      link="RB_sensor_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+</robot>

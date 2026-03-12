@@ -1,0 +1,70 @@
+bengine:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000  
+
+    # FL Controllers ---------------------------------------
+    LF_hip_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LF_hip_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+
+    LF_thigh_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LF_thigh_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    LF_calf_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LF_calf_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    # FR Controllers ---------------------------------------
+    RF_hip_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RF_hip_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+
+    RF_thigh_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RF_thigh_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    RF_calf_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RF_calf_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    # RL Controllers ---------------------------------------
+    LB_hip_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LB_hip_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+
+    LB_thigh_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LB_thigh_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    LB_calf_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: LB_calf_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    # RR Controllers ---------------------------------------
+    RB_hip_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RB_hip_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+
+    RB_thigh_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RB_thigh_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+
+    RB_calf_controller:
+        type: bengine_legged_controller/BengineJointController
+        joint: RB_calf_joint
+        pid: {p: 300.0, i: 0.0, d: 8.0}
+

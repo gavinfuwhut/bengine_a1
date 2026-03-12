@@ -1,0 +1,16 @@
+<launch>
+  <arg name="model" />
+  <arg name="user_debug" default="true"/>
+  <!-- <param name="robot_description" textfile="$(find bengine_description1)/urdf/bengine_description1.urdf" /> -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find bengine_description1)/xacro/robot.xacro  DEBUG:=$(arg user_debug)"/>
+  <node
+    name="joint_state_publisher_gui"
+    pkg="joint_state_publisher_gui"
+    type="joint_state_publisher_gui" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node
+    name="rviz" pkg="rviz" type="rviz" args="-d $(find bengine_description1)/urdf/urdf.rviz" />
+</launch>

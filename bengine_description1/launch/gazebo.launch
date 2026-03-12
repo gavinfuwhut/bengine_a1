@@ -1,0 +1,58 @@
+<launch>
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <!-- Debug mode will hung up the robot, use "true" or "false" to switch it. -->
+    <arg name="user_debug" default="false"/>
+
+    <!-- 启动 gazebo -->
+    <!-- 启动 Gazebo 的仿真环境，当前环境为空环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find bengine_description1)/worlds/earth.world"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <!-- Load the URDF into the ROS Parameter Server -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find bengine_description1)/xacro/robot.xacro  DEBUG:=$(arg user_debug)"/>
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+    <!-- Set trunk and joint positions at startup -->
+    <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
+          args="-urdf -z 0.6 -model bengine_robot -param robot_description -unpause"/> 
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find bengine_description1)/config/robot_control.yaml" command="load"/>
+
+    <!-- load the controllers -->
+    <node pkg="controller_manager" type="spawner" name="controller_spawner" respawn="false"
+          output="screen" ns="/bengine" args="joint_state_controller
+          LF_hip_controller LF_thigh_controller LF_calf_controller
+          RF_hip_controller RF_thigh_controller RF_calf_controller
+          LB_hip_controller LB_thigh_controller LB_calf_controller
+          RB_hip_controller RB_thigh_controller RB_calf_controller 
+          "/>
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+          respawn="false" output="screen">
+        <remap from="/joint_states" to="/bengine/joint_states"/>
+    </node>
+
+  <node
+    name="tf_footprint_base" pkg="tf" type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" />
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+</launch>
